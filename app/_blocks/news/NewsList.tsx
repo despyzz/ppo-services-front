@@ -1,17 +1,35 @@
-import { NewsItemDto } from '@/lib/models';
 import React from 'react';
 import NewsItem from './NewsItem';
 
-export default async function NewsList() {
-  // todo сделать адрес настраиваемым
-  const news: NewsItemDto[] = await fetch('http://localhost:8080/ppo/API.php?action=getAllNews')
-    .then((response) => response.json());
+interface NewsItemProps {
+  id: number,
+  title: string,
+  description: string,
+  date: string,
+  image_src: string,
+  created_at: Date,
+  updated_at: Date,
+}
+
+interface NewsListProps {
+  items: Array<NewsItemProps>
+}
+
+export default async function NewsList({ items }: NewsListProps) {
+  if (!items || items.length === 0) {
+    return null;
+  }
 
   return (
-    <>
-      {news.map((newsItem) => (
-        <NewsItem key={newsItem.id_news} {...newsItem} />
-      ))}
-    </>
+    <div className="flex flex-col gap-4">
+      <div className="text-center text-[24px] font-bold lg:text-[50px]">
+        Последние новости
+      </div>
+      <div className="flex flex-wrap justify-center gap-4 px-[clamp(10px,_2vw,_22px)]">
+        {items.map((newsItem) => (
+          <NewsItem key={newsItem.id} {...newsItem} />
+        ))}
+      </div>
+    </div>
   );
 }

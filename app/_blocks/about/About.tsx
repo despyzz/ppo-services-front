@@ -4,11 +4,21 @@ import React from 'react';
 import { MobileVersion } from './MobileVersion';
 import { DesktopVersion } from './DesktopVersion';
 
-export function About() {
+interface Stats {
+  projectsCount: number;
+  paymentsCount: number;
+  choiceCount: number;
+}
+
+interface AboutProps {
+  stats: Stats;
+}
+
+export function About({ stats }: AboutProps) {
   return (
     <div className="flex justify-center">
-      <MobileVersion />
-      <DesktopVersion />
+      <MobileVersion stats={stats} />
+      <DesktopVersion stats={stats} />
     </div>
   );
 }
