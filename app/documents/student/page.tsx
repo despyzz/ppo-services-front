@@ -1,7 +1,7 @@
 import { PPOPageContentWrapper, PPOSectionWrapper } from '@/components';
 import React from 'react';
 
-export default function EmployeePage() {
+export default function StudentPage() {
   return (
     <PPOPageContentWrapper>
       <PPOSectionWrapper>

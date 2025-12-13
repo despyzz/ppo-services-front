@@ -7,9 +7,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const StateByPathname: Record<string, TargetAudienceEnum> = {
-  '/projects': TargetAudienceEnum.NOT_SELECTED,
-  '/projects/employee': TargetAudienceEnum.EMPLOYEE,
-  '/projects/student': TargetAudienceEnum.STUDENT,
+  '/projects': TargetAudienceEnum.NotSelected,
+  '/projects/employee': TargetAudienceEnum.Employee,
+  '/projects/student': TargetAudienceEnum.Student,
 };
 
 export default function DictionaryLayout({ children } : Readonly<{
@@ -36,10 +36,10 @@ export default function DictionaryLayout({ children } : Readonly<{
         {/* Выбор типа информации */}
         <div className="flex w-full text-[20px] lg:text-[35px]">
           <Link
-            onClick={() => setCurrentTab(TargetAudienceEnum.EMPLOYEE)}
+            onClick={() => setCurrentTab(TargetAudienceEnum.Employee)}
             href="/projects/employee"
             className={`flex h-[52px] flex-1 items-center justify-center border-2 border-[#F34252] text-center transition-colors lg:h-[106px]
-            ${currentTab !== TargetAudienceEnum.EMPLOYEE
+            ${currentTab !== TargetAudienceEnum.Employee
               ? 'bg-[#F34252] text-[#ffffff]'
               : 'bg-[#ffffff] text-[#F34252]'}
           `}
@@ -47,10 +47,10 @@ export default function DictionaryLayout({ children } : Readonly<{
             <p>Работнику</p>
           </Link>
           <Link
-            onClick={() => setCurrentTab(TargetAudienceEnum.STUDENT)}
+            onClick={() => setCurrentTab(TargetAudienceEnum.Student)}
             href="/projects/student"
             className={`flex h-[52px] flex-1 items-center justify-center border-2 border-[#207EEB] text-center transition-colors lg:h-[106px]
-            ${currentTab !== TargetAudienceEnum.STUDENT
+            ${currentTab !== TargetAudienceEnum.Student
               ? 'bg-[#207EEB] text-[#ffffff]'
               : 'bg-[#ffffff] text-[#207EEB]'}
           `}

@@ -1,5 +1,5 @@
 export enum TargetAudienceEnum {
-  EMPLOYEE,
-  STUDENT,
-  NOT_SELECTED,
+  Employee = 'EMPLOYEE',
+  Student = 'STUDENT',
+  NotSelected = 'NOT_SELECTED',
 }

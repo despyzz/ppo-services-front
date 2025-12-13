@@ -1,5 +1,3 @@
-'use client';
-
 import {
   PPOAccordion, PPOAccordionDetails, PPOAccordionImageSummary,
   PPOListWrapper, PPOPageContentWrapper, PPOSectionWrapper,

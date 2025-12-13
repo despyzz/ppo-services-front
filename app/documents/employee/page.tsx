@@ -1,5 +1,9 @@
 import { PPOPageContentWrapper, PPOSectionWrapper } from '@/components';
-import React from 'react';
+import React, { cache } from 'react';
+
+// const getEmployeeDocuments = cache(async (): Promise<> => {
+//
+// });
 
 export default function EmployeePage() {
   return (

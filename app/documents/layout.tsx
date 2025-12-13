@@ -7,12 +7,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const StateByPathname: Record<string, TargetAudienceEnum> = {
-  '/dictionary': TargetAudienceEnum.NotSelected,
-  '/dictionary/employee': TargetAudienceEnum.Employee,
-  '/dictionary/student': TargetAudienceEnum.Student,
+  '/documents': TargetAudienceEnum.NotSelected,
+  '/documents/employee': TargetAudienceEnum.Employee,
+  '/documents/student': TargetAudienceEnum.Student,
 };
 
-export default function DictionaryLayout({ children } : Readonly<{
+export default function DocumentsLayout({ children } : Readonly<{
   children: ReactNode;
 }>) {
   const pathname = usePathname();
@@ -23,11 +23,19 @@ export default function DictionaryLayout({ children } : Readonly<{
       <div className="flex flex-col items-center">
         {/* Изображение */}
         <div className="relative h-[206px] w-full lg:h-[342px]">
-          <Image src="/images/pages/dictionary_image.jpg" fill alt="Dictionary image." className="object-cover" />
+          <Image
+            src="/images/pages/documents/documents_image.jpg"
+            fill
+            alt="Documents image."
+            className="object-cover"
+          />
+          {/* Затемняющий слой */}
+          <div className="absolute inset-0 bg-black/40" />
+
           <div className="absolute inset-0 flex justify-center">
             <div className="flex w-full max-w-screen-xl items-center px-5">
               <p className="text-[30px] font-bold text-white lg:text-[64px]">
-                Просто о сложном
+                Это база
               </p>
             </div>
           </div>
@@ -37,7 +45,7 @@ export default function DictionaryLayout({ children } : Readonly<{
         <div className="flex w-full text-[20px] lg:text-[35px]">
           <Link
             onClick={() => setCurrentTab(TargetAudienceEnum.Employee)}
-            href="/dictionary/employee"
+            href="/documents/employee"
             className={`flex h-[52px] flex-1 items-center justify-center border-2 border-[#F34252] text-center transition-colors lg:h-[106px]
             ${currentTab !== TargetAudienceEnum.Employee
               ? 'bg-[#F34252] text-[#ffffff]'
@@ -48,7 +56,7 @@ export default function DictionaryLayout({ children } : Readonly<{
           </Link>
           <Link
             onClick={() => setCurrentTab(TargetAudienceEnum.Student)}
-            href="/dictionary/student"
+            href="/documents/student"
             className={`flex h-[52px] flex-1 items-center justify-center border-2 border-[#207EEB] text-center transition-colors lg:h-[106px]
             ${currentTab !== TargetAudienceEnum.Student
               ? 'bg-[#207EEB] text-[#ffffff]'

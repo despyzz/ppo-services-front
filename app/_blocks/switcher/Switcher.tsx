@@ -5,7 +5,7 @@ import { TargetAudienceEnum } from '@/lib/models';
 import React, { useState } from 'react';
 
 export default function Switcher() {
-  const [currentTab, setCurrentTab] = useState<TargetAudienceEnum>(TargetAudienceEnum.NOT_SELECTED);
+  const [currentTab, setCurrentTab] = useState<TargetAudienceEnum>(TargetAudienceEnum.NotSelected);
 
   return (
     <div className="flex flex-col items-center max-lg:h-[calc(100dvh-42px)] lg:h-auto">
@@ -27,10 +27,10 @@ export default function Switcher() {
       {/* Выбор типа информации */}
       <div className="flex w-full text-[20px] lg:text-[35px]">
         <Link
-          onClick={() => setCurrentTab(TargetAudienceEnum.EMPLOYEE)}
+          onClick={() => setCurrentTab(TargetAudienceEnum.Employee)}
           href="/dictionary/employee"
           className={`flex h-[52px] flex-1 items-center justify-center border-2 border-[#F34252] text-center transition-colors lg:h-[106px]
-            ${currentTab !== TargetAudienceEnum.EMPLOYEE
+            ${currentTab !== TargetAudienceEnum.Employee
             ? 'bg-[#F34252] text-[#ffffff]'
             : 'bg-[#ffffff] text-[#F34252]'}
           `}
@@ -38,10 +38,10 @@ export default function Switcher() {
           <p>Работнику</p>
         </Link>
         <Link
-          onClick={() => setCurrentTab(TargetAudienceEnum.STUDENT)}
+          onClick={() => setCurrentTab(TargetAudienceEnum.Student)}
           href="/dictionary/student"
           className={`flex h-[52px] flex-1 items-center justify-center border-2 border-[#207EEB] text-center transition-colors lg:h-[106px]
-            ${currentTab !== TargetAudienceEnum.STUDENT
+            ${currentTab !== TargetAudienceEnum.Student
             ? 'bg-[#207EEB] text-[#ffffff]'
             : 'bg-[#ffffff] text-[#207EEB]'}
           `}
