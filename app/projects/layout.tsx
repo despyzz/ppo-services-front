@@ -53,7 +53,7 @@ export default function DictionaryLayout({ children } : Readonly<{
             ${currentTab !== TargetAudienceEnum.Student
               ? 'bg-[#207EEB] text-[#ffffff]'
               : 'bg-[#ffffff] text-[#207EEB]'}
-          `}
+            `}
           >
             <p>Студенту</p>
           </Link>

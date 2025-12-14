@@ -28,7 +28,7 @@ interface ApiResponse {
 const getStudentProjects = cache(async (): Promise<Project[]> => {
   try {
     const response = await fetch(`http://localhost:3000/projects?target=${TargetAudienceEnum.Student}`, {
-      // next: { revalidate: 3600 }, // 1 час
+      next: { revalidate: 3600 }, // 1 час
     });
 
     if (!response.ok) {
