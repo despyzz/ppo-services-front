@@ -17,7 +17,6 @@ export function Navigation() {
   const toggleMenu = () => setIsMenuOpen((prevState) => !prevState);
 
   const headerClassName = 'flex w-full items-center px-5 h-[42px] lg:h-[108px]';
-
   return (
     <div className="relative w-full max-w-screen-xl">
       <div className={`${headerClassName} justify-between`}>

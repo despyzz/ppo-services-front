@@ -1,7 +1,8 @@
 import React, { cache } from 'react';
 import {
-  PPOListTitle, PPOListWrapper,
-  PPOPageContentWrapper, PPOSectionWrapper,
+  PPOListWrapper,
+  PPOPageContentWrapper,
+  PPOSectionWrapper,
 } from '@/components';
 import TeamMemberCard from './_components/TeamMemberCard';
 
@@ -122,7 +123,10 @@ export default async function TeamPage() {
           {/* Руководители */}
           {supervisors.length > 0 && (
             <>
-              <PPOListTitle>Руководители профорганизаций структурных подразделений</PPOListTitle>
+              <p className="text-[clamp(14px,_3vw,_40px)] font-bold">
+                Руководители профорганизаций структурных подразделений
+              </p>
+
               <PPOListWrapper>
                 <div className="flex gap-[16px] lg:gap-[32px]">
                   {supervisors.map((member) => (
