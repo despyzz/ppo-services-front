@@ -1,78 +1,61 @@
 import {
-  PPOAccordion, PPOAccordionDetails, PPOAccordionImageSummary,
-  PPOListWrapper, PPOPageContentWrapper, PPOSectionWrapper,
+  PPOPageContentWrapper, PPOSectionWrapper,
 } from '@/components';
-import React from 'react';
-import Image from 'next/image';
+import React, { cache } from 'react';
+import { TargetAudienceEnum } from '@/lib/models';
+import ProjectsList from '@/app/projects/_components/ProjectsList';
 
-export default function StudentPage() {
+// Типы для данных
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image_src: string;
+  target: TargetAudienceEnum;
+  created_at: string;
+  updated_at: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  projects: Project[];
+  filters: {
+    target: string | null;
+  };
+}
+
+// Функция для получения проектов с кэшированием
+const getStudentProjects = cache(async (): Promise<Project[]> => {
+  try {
+    const response = await fetch(`http://localhost:3000/projects?target=${TargetAudienceEnum.Student}`, {
+      // next: { revalidate: 3600 }, // 1 час
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+
+    const data: ApiResponse = await response.json();
+
+    if (!data.success) {
+      throw new Error('Не удалось получить проекты');
+    }
+
+    return data.projects;
+  } catch (error) {
+    console.error('Ошибка при загрузке проектов:', error);
+    return [];
+  }
+});
+
+export default async function StudentPage() {
+  const projects = await getStudentProjects();
+
   return (
     <PPOPageContentWrapper>
-
       <PPOSectionWrapper>
-
-        <PPOListWrapper>
-          <PPOAccordion>
-            <PPOAccordionImageSummary>
-              <div className="aspect-[352/91] w-full">
-                <Image
-                  src="/images/pages/projects/projects_pushka.jpg"
-                  alt="Проект 'Пушка'"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </PPOAccordionImageSummary>
-            <PPOAccordionDetails>
-              <div className="mt-5 flex flex-col gap-5">
-                <div>
-                  <p>
-                    Ученье — свет, а неученье — любимое время для каждого студента.
-                    Мы знаем об этом, поэтому приготовили для тебя кое-что особенное.
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    Забудь о лекциях до следующего семестра, сегодня твоя задача — отдохнуть так,
-                    как ты еще никогда не отдыхал.
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    Профком Политеха приглашает тебя на зимний отдых «ПУШКА».
-                  </p>
-                </div>
-              </div>
-            </PPOAccordionDetails>
-          </PPOAccordion>
-
-          <PPOAccordion>
-            <PPOAccordionImageSummary>
-              <div className="aspect-[352/91] w-full">
-                <Image
-                  src="/images/pages/projects/projects_stl.jpg"
-                  alt="Проект 'СТЛ'"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </PPOAccordionImageSummary>
-            <PPOAccordionDetails>
-              <div className="mt-5 flex flex-col gap-5">
-                <div>
-                  <p>
-                    Цель конкурса — выявление людей с лидерскими и организаторскими способностями,
-                    готовых менять жизнь студентов университета к лучшему.
-                  </p>
-                </div>
-              </div>
-            </PPOAccordionDetails>
-          </PPOAccordion>
-
-        </PPOListWrapper>
-
+        <ProjectsList items={projects} />
       </PPOSectionWrapper>
-
     </PPOPageContentWrapper>
   );
 }

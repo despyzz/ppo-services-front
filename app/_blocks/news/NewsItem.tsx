@@ -25,7 +25,7 @@ export default function NewsItem({
         {title}
       </p>
       <p className="text-[14px] font-normal lg:text-[26px]">
-        {date}
+        {date.replace(/-/g, '.')}
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
 import { PPOPageContentWrapper, PPOSectionWrapper } from '@/components';
 import React, { cache } from 'react';
 import { TargetAudienceEnum } from '@/lib/models';
-import DocumentsList from '../_blocks/DocumentsList';
+import DocumentsList from '../_components/DocumentsList';
 
 interface FileInfo {
   name: string;
