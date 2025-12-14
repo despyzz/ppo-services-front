@@ -1,30 +1,28 @@
-import { NewsItemDto } from '@/lib/models';
 import { PPOAccordion, PPOAccordionDetails, PPOAccordionImageSummary } from '@/components';
 import Image from 'next/image';
 import React from 'react';
+import { CustomMarkdown } from '@/components/CustomMarkdown';
 
-type NewsItemProps = NewsItemDto;
+interface NewsItemProps {
+  title: string;
+  description: string;
+  date: string;
+  image_src: string;
+}
+
 export default function NewsItem({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  id_news,
-  name,
+  title,
   description,
   date,
-  path_to_photo,
-  Alt,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  Colour,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  Attribute,
+  image_src,
 }: NewsItemProps) {
   return (
     <PPOAccordion>
       <PPOAccordionImageSummary>
         <div className="aspect-[352/91] w-full">
           <Image
-            // todo сделать адрес настраиваемым
-            src={`http://localhost:8080/ppo/images/${path_to_photo}`}
-            alt={Alt}
+            src={`http://localhost:3000${image_src}`}
+            alt={`${title} newspaper image`}
             fill
             className="object-cover"
           />
@@ -36,15 +34,15 @@ export default function NewsItem({
           </div>
 
           <p className="self-end text-[clamp(14px,_3vw,_40px)] font-normal">
-            {name}
+            {title}
           </p>
         </div>
       </PPOAccordionImageSummary>
       <PPOAccordionDetails>
         <div className="mt-5 flex flex-col gap-5">
-          {/* todo устранить уязвимость к XSS-атакам */}
-          {/* eslint-disable-next-line react/no-danger */}
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <CustomMarkdown>
+            {String(description)}
+          </CustomMarkdown>
         </div>
       </PPOAccordionDetails>
     </PPOAccordion>
