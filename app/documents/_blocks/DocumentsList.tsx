@@ -24,11 +24,11 @@ interface DocumentsListProps {
 
 export default function DocumentsList({ items }: DocumentsListProps) {
   if (!items || items.length === 0) {
-    return null;
+    return 'Пока что не было загружено ни одного документа';
   }
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-[clamp(10px,_2vw,_22px)]">
+    <div className="flex flex-wrap gap-4 p-[clamp(10px,_2vw,_22px)]">
       {items.map((documentItem) => (
         <DocumentsItem key={documentItem.id} {...documentItem} />
       ))}
