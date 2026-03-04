@@ -1,12 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
+import type { NewsItem as NewsItemDto } from '@/lib/models';
 
-interface NewsItemProps {
-  id: number,
-  title: string,
-  date: string,
-  image_src: string,
-}
+type NewsItemProps = Pick<NewsItemDto, 'id' | 'title' | 'date' | 'image_src'>;
 
 export default function NewsItem({
   id, title, date, image_src,
@@ -15,7 +13,7 @@ export default function NewsItem({
     <div className="flex min-w-[273px] max-w-[557px] flex-1 flex-col">
       <div className="relative h-[100px] w-full overflow-hidden md:h-[150px] lg:h-[350px]">
         <Image
-          src={`http://localhost:3000${image_src}`}
+          src={image_src}
           alt={`Новость ${id}: ${title}`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"

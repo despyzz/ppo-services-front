@@ -11,10 +11,13 @@ interface Stats {
 }
 
 interface AboutProps {
-  stats: Stats;
+  stats?: Stats;
 }
 
 export function About({ stats }: AboutProps) {
+  if (!stats) {
+    return null;
+  }
   return (
     <div className="flex justify-center">
       <MobileVersion stats={stats} />

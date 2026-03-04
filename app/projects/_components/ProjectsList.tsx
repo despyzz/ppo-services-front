@@ -1,20 +1,9 @@
 import React from 'react';
-import { TargetAudienceEnum } from '@/lib/models';
+import type { ProjectItem as ProjectItemDto } from '@/lib/models';
 import ProjectsItem from './ProjectsItem';
 
-// Типы для данных
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image_src: string;
-  target: TargetAudienceEnum;
-  created_at: string;
-  updated_at: string;
-}
-
 interface ProjectsListProps {
-  items: Array<Project>
+  items: ProjectItemDto[]
 }
 
 export default async function ProjectsList({ items }: ProjectsListProps) {

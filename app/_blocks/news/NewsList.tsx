@@ -1,21 +1,14 @@
+'use client';
+
 import React from 'react';
+import type { NewsItem as NewsItemDto } from '@/lib/models';
 import NewsItem from './NewsItem';
 
-interface NewsItemProps {
-  id: number,
-  title: string,
-  description: string,
-  date: string,
-  image_src: string,
-  created_at: Date,
-  updated_at: Date,
-}
-
 interface NewsListProps {
-  items: Array<NewsItemProps>
+  items?: NewsItemDto[]
 }
 
-export default async function NewsList({ items }: NewsListProps) {
+export default function NewsList({ items }: NewsListProps) {
   if (!items || items.length === 0) {
     return null;
   }

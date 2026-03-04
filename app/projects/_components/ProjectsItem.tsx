@@ -2,12 +2,9 @@ import { PPOAccordion, PPOAccordionDetails, PPOAccordionImageSummary } from '@/c
 import Image from 'next/image';
 import React from 'react';
 import { CustomMarkdown } from '@/components/CustomMarkdown';
+import type { ProjectItem as ProjectItemDto } from '@/lib/models';
 
-interface ProjectItemProps {
-  title: string;
-  description: string;
-  image_src: string;
-}
+type ProjectItemProps = Pick<ProjectItemDto, 'title' | 'description' | 'image_src'>;
 
 export default function ProjectsItem({
   title,
@@ -19,7 +16,7 @@ export default function ProjectsItem({
       <PPOAccordionImageSummary>
         <div className="aspect-[352/91] w-full">
           <Image
-            src={`http://localhost:3000${image_src}`}
+            src={image_src}
             alt={`${title} project image`}
             fill
             className="object-cover"

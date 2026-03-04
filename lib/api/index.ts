@@ -1,6 +1,5 @@
-export { TargetAudienceEnum } from './targetAudienceEnum';
-export type { NewsItemDto } from './newsItem';
-export * from './stats';
+export * from './httpClient';
+export * from './main';
 export * from './news';
 export * from './documents';
 export * from './projects';

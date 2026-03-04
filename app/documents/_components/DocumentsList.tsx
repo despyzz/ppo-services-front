@@ -1,25 +1,9 @@
 import React from 'react';
-import { TargetAudienceEnum } from '@/lib/models';
+import type { DocumentItem as DocumentItemDto } from '@/lib/models';
 import DocumentsItem from './DocumentsItem';
 
-interface FileInfo {
-  name: string,
-  mime_type: string,
-  url: string,
-  size: number
-}
-
-interface DocumentItemProps {
-  id: number,
-  title: string,
-  target: TargetAudienceEnum,
-  file: FileInfo,
-  created_at: Date,
-  updated_at: Date,
-}
-
 interface DocumentsListProps {
-  items: Array<DocumentItemProps>
+  items: DocumentItemDto[]
 }
 
 export default function DocumentsList({ items }: DocumentsListProps) {

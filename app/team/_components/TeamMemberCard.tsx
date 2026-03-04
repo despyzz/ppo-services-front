@@ -1,16 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { CustomMarkdown } from '@/components/CustomMarkdown';
-
-interface TeamMember {
-  id: number;
-  role: 'CHAIRMAN' | 'DEPUTY_CHAIRMAN' | 'SUPERVISOR';
-  image_src: string;
-  name: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
-}
+import type { TeamMember } from '@/lib/models';
 
 // Компонент карточки члена команды
 export default function TeamMemberCard({ member }: { member: TeamMember }) {
@@ -19,7 +10,7 @@ export default function TeamMemberCard({ member }: { member: TeamMember }) {
       {/* Изображение */}
       <div className="relative aspect-[169/180] w-full lg:aspect-[544/352]">
         <Image
-          src={`http://localhost:3000${member.image_src}`}
+          src={member.image_src}
           fill
           alt={member.name}
           className="object-cover"

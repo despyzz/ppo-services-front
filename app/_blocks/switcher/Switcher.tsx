@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { TargetAudienceEnum } from '@/lib/models';
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 export default function Switcher() {
   const [currentTab, setCurrentTab] = useState<TargetAudienceEnum>(TargetAudienceEnum.NotSelected);
@@ -11,7 +12,7 @@ export default function Switcher() {
     <div className="flex flex-col items-center max-lg:h-[calc(100dvh-42px)] lg:h-auto">
       {/* Видео */}
       <div className="relative h-[206px] w-full flex-1 lg:h-[552px] lg:flex-initial">
-        <div className="h-full bg-gray-300 object-cover" />
+        <Image src="/images/main_page_image.jpg" fill alt="Projects image." className="object-cover" />
         <div className="absolute inset-0 ">
           <div className="mt-[50dvh] max-w-[800px] px-[24px] lg:ml-[42%] lg:mt-[177px]">
             <p className="text-[32px] font-bold leading-[38px] lg:text-[64px] lg:leading-[64px]">

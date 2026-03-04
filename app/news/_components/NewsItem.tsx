@@ -1,14 +1,12 @@
+'use client';
+
 import { PPOAccordion, PPOAccordionDetails, PPOAccordionImageSummary } from '@/components';
 import Image from 'next/image';
 import React from 'react';
 import { CustomMarkdown } from '@/components/CustomMarkdown';
+import type { NewsItem as NewsItemDto } from '@/lib/models';
 
-interface NewsItemProps {
-  title: string;
-  description: string;
-  date: string;
-  image_src: string;
-}
+type NewsItemProps = Pick<NewsItemDto, 'title' | 'description' | 'date' | 'image_src'>;
 
 export default function NewsItem({
   title,
@@ -21,7 +19,7 @@ export default function NewsItem({
       <PPOAccordionImageSummary>
         <div className="aspect-[352/91] w-full">
           <Image
-            src={`http://localhost:3000${image_src}`}
+            src={image_src}
             alt={`${title} newspaper image`}
             fill
             className="object-cover"

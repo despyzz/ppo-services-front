@@ -3,19 +3,9 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
+import type { DocumentItem as DocumentItemDto } from '@/lib/models';
 
-interface FileInfo {
-  name: string,
-  mime_type: string,
-  url: string,
-  size: number
-}
-
-interface DocumentItemProps {
-  id: number,
-  title: string,
-  file: FileInfo,
-}
+type DocumentItemProps = Pick<DocumentItemDto, 'id' | 'title' | 'file'>;
 
 export default function DocumentsItem({
   id, title, file,
@@ -29,7 +19,7 @@ export default function DocumentsItem({
       setIsDownloading(true);
 
       // Создаем скрытую ссылку для скачивания
-      const downloadUrl = `http://localhost:3000${file.url}`;
+      const downloadUrl = `${process.env.BACKEND_URL}${file.url}`;
       const link = document.createElement('a');
       link.href = downloadUrl;
       link.download = file.name; // Указываем имя файла для скачивания
@@ -42,9 +32,7 @@ export default function DocumentsItem({
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    } catch (error) {
-      console.error('Ошибка при скачивании:', error);
-    } finally {
+    } catch (error) { /* empty */ } finally {
       setIsDownloading(false);
     }
   };

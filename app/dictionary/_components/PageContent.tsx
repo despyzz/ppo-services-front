@@ -8,24 +8,10 @@ import {
 } from '@/components';
 import React from 'react';
 import { CustomMarkdown } from '@/components/CustomMarkdown';
-
-interface Entry {
-  id: number;
-  title: string;
-  description: string;
-}
-
-interface Category {
-  id: number;
-  title: string;
-  target: 'EMPLOYEE' | 'STUDENT';
-  entries: Entry[];
-  created_at: string;
-  updated_at: string;
-}
+import type { DictionaryCategory } from '@/lib/models';
 
 interface PageContentProps {
-  items: Category[];
+  items: DictionaryCategory[];
 }
 
 export default function PageContent({ items }: PageContentProps) {
