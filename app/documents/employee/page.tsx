@@ -1,11 +1,22 @@
+'use client';
+
 import { PPOPageContentWrapper, PPOSectionWrapper } from '@/components';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getEmployeeDocuments } from '@/lib/api';
 import type { DocumentItem } from '@/lib/models';
 import DocumentsList from '../_components/DocumentsList';
 
-export default async function EmployeePage() {
-  const documents: DocumentItem[] = await getEmployeeDocuments();
+export default function EmployeePage() {
+  const [documents, setDocuments] = useState<DocumentItem[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getEmployeeDocuments();
+      setDocuments(response);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <PPOPageContentWrapper>

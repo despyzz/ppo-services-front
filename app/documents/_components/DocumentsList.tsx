@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { DocumentItem as DocumentItemDto } from '@/lib/models';
 import DocumentsItem from './DocumentsItem';
