@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import {
   PPOListWrapper,
   PPOPageContentWrapper,
@@ -9,15 +11,37 @@ import {
   getDeputyChairman,
   getSupervisors,
 } from '@/lib/api';
+import { TeamMember } from '@/lib/models';
 import TeamMemberCard from './_components/TeamMemberCard';
 
-export default async function TeamPage() {
-  // Получаем данные параллельно
-  const [chairman, deputyChairman, supervisors] = await Promise.all([
-    getChairman(),
-    getDeputyChairman(),
-    getSupervisors(),
-  ]);
+export default function TeamPage() {
+  const [chairman, setChairman] = useState<TeamMember>();
+  const [deputyChairman, setDeputyChairman] = useState<TeamMember>();
+  const [supervisors, setSupervisors] = useState<TeamMember[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [chairmanData, deputyChairmanData, supervisorsData] = await Promise.all([
+        getChairman(),
+        getDeputyChairman(),
+        getSupervisors(),
+      ]);
+
+      if (chairmanData) {
+        setChairman(chairmanData);
+      }
+
+      if (deputyChairmanData) {
+        setDeputyChairman(deputyChairmanData);
+      }
+
+      if (supervisorsData) {
+        setSupervisors(supervisorsData);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex w-full flex-col items-center">
