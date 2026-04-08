@@ -1,4 +1,4 @@
-# Build stage
+# Стадия сборки Next.js
 FROM node:18-alpine AS builder
 
 WORKDIR /app
@@ -9,19 +9,28 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Runtime stage
-FROM node:18-alpine
+# Финальный образ с Nginx
+FROM nginx:alpine
 
-WORKDIR /app
+# Устанавливаем gettext для envsubst
+RUN apk add --no-cache gettext
 
-ENV NODE_ENV=production
+# Удаляем дефолтный конфиг
+RUN rm /etc/nginx/conf.d/default.conf
 
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.ts ./
+# Копируем шаблон конфига
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
-EXPOSE 3000
+# Копируем статику из builder-стадии
+COPY --from=builder /app/out /usr/share/nginx/html
 
-CMD ["npm", "run", "start"]
+# Исправляем права доступа к файлам (важно для предотвращения 403)
+RUN chmod -R 755 /usr/share/nginx/html
+
+# Переменная окружения для бэкенда (по умолчанию)
+ENV BACKEND_BASE_URL=http://backend:3000
+
+EXPOSE 80
+
+# Подстановка переменной в конфиг и запуск nginx
+CMD ["/bin/sh", "-c", "envsubst '${BACKEND_BASE_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

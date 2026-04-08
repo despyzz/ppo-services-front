@@ -1,4 +1,4 @@
-const BACKEND_BASE_URL = 'http://backend:3000';
+const BACKEND_BASE_URL = '/api';
 
 type FetchOptions = RequestInit;
 
