@@ -19,7 +19,7 @@ export default function DocumentsItem({
       setIsDownloading(true);
 
       // Создаем скрытую ссылку для скачивания
-      const downloadUrl = `${process.env.BACKEND_URL}${file.url}`;
+      const downloadUrl = file.url;
       const link = document.createElement('a');
       link.href = downloadUrl;
       link.download = file.name; // Указываем имя файла для скачивания

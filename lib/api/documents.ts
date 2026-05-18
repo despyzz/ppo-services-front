@@ -4,7 +4,7 @@ import { TargetAudienceEnum } from '../models';
 
 async function getDocumentsByTarget(target: TargetAudienceEnum): Promise<DocumentItem[]> {
   try {
-    const data = await apiFetch<DocumentsResponse>(`/documents?target=${target}`);
+    const data = await apiFetch<DocumentsResponse>(`/documents/?target=${target}`);
 
     if (!data.success) {
       throw new Error('Не удалось получить документы');
