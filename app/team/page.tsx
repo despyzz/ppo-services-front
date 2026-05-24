@@ -67,7 +67,7 @@ export default function TeamPage() {
               </p>
 
               <PPOListWrapper>
-                <div className="flex gap-[16px] lg:gap-[32px]">
+                <div className="flex flex-wrap gap-[16px] lg:gap-[32px]">
                   {supervisors.map((member) => (
                     <TeamMemberCard key={member.id} member={member} />
                   ))}

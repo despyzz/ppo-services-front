@@ -10,7 +10,6 @@ import { JoinButton } from './components/JoinButton';
 import { BurgerMenu } from './components/BurgerMenu';
 import { NavigationItems } from './components/NavigationItems';
 import { CrossIcon } from './components/CrossIcon';
-import { Divider } from './components/Divider';
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +20,6 @@ export function Navigation() {
     <div className="relative w-full max-w-screen-xl">
       <div className={`${headerClassName} justify-between`}>
         <Logo />
-        <Divider />
         <NavigationItems />
         <JoinButton />
         <BurgerMenu onClick={toggleMenu} />

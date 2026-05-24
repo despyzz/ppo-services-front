@@ -14,6 +14,8 @@ export default function NewsItem({
   date,
   image_src,
 }: NewsItemProps) {
+  const reversedDate = date.split('-').reverse().join('.');
+
   return (
     <PPOAccordion>
       <PPOAccordionImageSummary>
@@ -28,7 +30,7 @@ export default function NewsItem({
 
         <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-4 text-white">
           <div className="text-[clamp(12px,_2.5vw,_40px)] font-normal">
-            {date.replace(/-/g, '.')}
+            {reversedDate}
           </div>
 
           <p className="self-end text-[clamp(14px,_3vw,_40px)] font-normal">

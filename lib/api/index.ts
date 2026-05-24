@@ -5,3 +5,4 @@ export * from './documents';
 export * from './projects';
 export * from './dictionary';
 export * from './team';
+export * from './unionCard';

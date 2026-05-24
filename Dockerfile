@@ -27,10 +27,11 @@ COPY --from=builder /app/out /usr/share/nginx/html
 # Исправляем права доступа к файлам (важно для предотвращения 403)
 RUN chmod -R 755 /usr/share/nginx/html
 
-# Переменная окружения для бэкенда (по умолчанию)
+# Переменные окружения для проксирования API (по умолчанию)
 ENV BACKEND_BASE_URL=http://backend:3000
+ENV BACKEND_CARD_URL=http://card:3333
 
 EXPOSE 80
 
-# Подстановка переменной в конфиг и запуск nginx
-CMD ["/bin/sh", "-c", "envsubst '${BACKEND_BASE_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# Подстановка переменных в конфиг и запуск nginx
+CMD ["/bin/sh", "-c", "envsubst '${BACKEND_BASE_URL} ${BACKEND_CARD_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

@@ -28,8 +28,7 @@ export default function PageContent({ items }: PageContentProps) {
   }
 
   return (
-    <PPOPageContentWrapper>
-
+    <div className="flex w-full max-w-screen-xl flex-col gap-[8px] px-5 py-[20px] lg:py-[50px]">
       {items.map((category) => (
         <PPOSectionWrapper key={category.id}>
           <PPOListTitle>
@@ -54,6 +53,6 @@ export default function PageContent({ items }: PageContentProps) {
           ))}
         </PPOSectionWrapper>
       ))}
-    </PPOPageContentWrapper>
+    </div>
   );
 }

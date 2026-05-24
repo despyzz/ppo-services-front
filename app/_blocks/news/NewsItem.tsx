@@ -9,6 +9,8 @@ type NewsItemProps = Pick<NewsItemDto, 'id' | 'title' | 'date' | 'image_src'>;
 export default function NewsItem({
   id, title, date, image_src,
 }: NewsItemProps) {
+  const reversedDate = date.split('-').reverse().join('.');
+
   return (
     <div className="flex min-w-[273px] max-w-[557px] flex-1 flex-col">
       <div className="relative h-[100px] w-full overflow-hidden md:h-[150px] lg:h-[350px]">
@@ -19,11 +21,11 @@ export default function NewsItem({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <p className="text-[24px] font-bold lg:text-[50px]">
+      <p className="text-[24px] font-bold lg:text-[36px]">
         {title}
       </p>
       <p className="text-[14px] font-normal lg:text-[26px]">
-        {date.replace(/-/g, '.')}
+        {reversedDate}
       </p>
     </div>
   );

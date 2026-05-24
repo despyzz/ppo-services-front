@@ -6,8 +6,14 @@ export enum AppRoutes {
   Join = '/join',
   News = '/news',
   Projects = '/projects',
+  Services = '/services',
   Team = '/team',
 }
+
+export const SERVICE_ROUTES = {
+  Card: '/services/card',
+  Calculator: '/services/calculator',
+} as const;
 
 export const NAVIGATION_CONFIG = {
   [AppRoutes.Home]: 'Главная',
@@ -16,4 +22,5 @@ export const NAVIGATION_CONFIG = {
   [AppRoutes.Projects]: 'Проекты',
   [AppRoutes.Team]: 'Команда',
   [AppRoutes.News]: 'Новости',
+  [AppRoutes.Services]: 'Сервисы',
 };
